@@ -116,7 +116,7 @@
       padding: 14px 18px;
       border: none;
       border-radius: 999px;
-      background: white;
+      background: rgba(255, 255, 255, 0.9);
       color: #ff4f87;
       font-weight: 850;
       cursor: pointer;
@@ -132,19 +132,14 @@
       transform: scale(0.94);
     }
 
-    .btn-pink {
+    .btn-main {
+      background: rgba(255, 255, 255, 0.9);
+      color: #ff4f87;
+    }
+
+    .btn-final {
       background: #ff4f87;
       color: white;
-    }
-
-    .btn-soft {
-      background: rgba(255, 255, 255, 0.88);
-      color: #ff4f87;
-    }
-
-    .btn-yellow {
-      background: #fff3b0;
-      color: #ff4f87;
     }
 
     .small {
@@ -214,32 +209,66 @@
       pointer-events: none;
     }
 
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 143, 163, 0.35);
+      backdrop-filter: blur(7px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      padding: 20px;
+    }
+
+    .popup-box {
+      width: 100%;
+      max-width: 335px;
+      background: rgba(255, 255, 255, 0.94);
+      color: #ff4f87;
+      border-radius: 28px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+      animation: popupMuncul 0.4s ease;
+    }
+
+    .popup-emoji {
+      font-size: 50px;
+      margin-bottom: 8px;
+      animation: naikTurun 1.3s ease-in-out infinite;
+    }
+
+    .popup-box h3 {
+      margin: 8px 0;
+      font-size: 22px;
+    }
+
+    .popup-box p {
+      color: #ff4f87;
+      font-size: 15.5px;
+      line-height: 1.55;
+      margin: 13px 0;
+    }
+
+    .popup-box button {
+      margin-top: 12px;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 999px;
+      background: #ff4f87;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(255, 79, 135, 0.35);
+    }
+
     .shake {
       animation: goyang 0.32s ease;
     }
 
     .pulse {
       animation: pulse 1s ease infinite;
-    }
-
-    .typing {
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .typing span::after {
-      content: "|";
-      animation: kedip 0.7s infinite;
-    }
-
-    .mini-game {
-      margin-top: 18px;
-    }
-
-    .run-away {
-      position: relative;
     }
 
     .meter {
@@ -342,6 +371,17 @@
       }
     }
 
+    @keyframes popupMuncul {
+      from {
+        opacity: 0;
+        transform: scale(0.85) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
     @keyframes goyang {
       0% { transform: translateX(0); }
       25% { transform: translateX(-7px); }
@@ -356,15 +396,6 @@
       }
       50% {
         transform: scale(1.04);
-      }
-    }
-
-    @keyframes kedip {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0;
       }
     }
 
@@ -427,11 +458,11 @@
           </div>
         </div>
 
-        <button class="btn btn-pink" onclick="isiMeterLaluNext()">
+        <button class="btn btn-main" onclick="isiMeterLaluNext()">
           Mulai surprise-nya
         </button>
 
-        <button class="btn btn-soft" onclick="prankSkip()">
+        <button class="btn btn-main" onclick="prankSkip()">
           Aku mau skip aja
         </button>
       </div>
@@ -450,11 +481,11 @@
           Itu efek surprise sederhana dari anak Sistem Informasi.
         </p>
 
-        <button class="btn btn-pink" onclick="nextPage(3)">
+        <button class="btn btn-main" onclick="nextPage(3)">
           Lanjut deh
         </button>
 
-        <button class="btn btn-yellow" onclick="tombolRahasia()">
+        <button class="btn btn-main" onclick="tombolRahasia()">
           Tombol rahasia
         </button>
       </div>
@@ -468,19 +499,21 @@
           Menurut Lilis, kenapa ucapan ini telat?
         </p>
 
-        <button class="btn" onclick="jawabanSalah('Bukan lupa kok, ini cuma strategi biar beda sendiri 😄')">
+        <button class="btn btn-main" onclick="jawabanSalah('lupa')">
           Karena lupa
         </button>
 
-        <button class="btn" onclick="jawabanSalah('Misterius sih iya, tapi bukan itu jawabannya 😆')">
+        <button class="btn btn-main" onclick="jawabanSalah('misterius')">
           Karena sibuk jadi misterius
         </button>
 
-        <button class="btn btn-pink" onclick="nextPage(4)">
+        <button class="btn btn-main" onclick="nextPage(4)">
           Karena loading-nya agak lama
         </button>
 
-        <p class="small" id="responSalah"></p>
+        <p class="small">
+          Hati-hati, semua tombol kelihatannya polos 😄
+        </p>
       </div>
 
       <!-- Halaman 4 -->
@@ -497,7 +530,7 @@
           cuma loading-nya agak lama.
         </p>
 
-        <button class="btn btn-pink" onclick="nextPage(5)">
+        <button class="btn btn-main" onclick="nextPage(5)">
           Dimaafin nggak?
         </button>
       </div>
@@ -511,20 +544,20 @@
           Karena ini surprise telat, Lilis wajib pilih jawaban.
         </p>
 
-        <button class="btn btn-pink pulse" onclick="nextPage(6)">
+        <button class="btn btn-main" onclick="nextPage(6)">
           Dimaafin
         </button>
 
-        <button class="btn btn-soft run-away" onclick="lariTombol(this)">
+        <button class="btn btn-main" onclick="pilihanMaaf('nggak')">
           Nggak dulu
         </button>
 
-        <button class="btn btn-soft run-away" onclick="lariTombol(this)">
+        <button class="btn btn-main" onclick="pilihanMaaf('pikir')">
           Pikir-pikir dulu
         </button>
 
         <p class="small">
-          Tenang, tombolnya tidak sepenuhnya demokratis 😄
+          Semua tombol kelihatan sama, tapi nasibnya beda-beda 😄
         </p>
       </div>
 
@@ -546,7 +579,7 @@
           </p>
         </div>
 
-        <button class="btn btn-pink" onclick="nextPage(7)">
+        <button class="btn btn-main" onclick="nextPage(7)">
           Lanjut baca
         </button>
       </div>
@@ -567,11 +600,11 @@
           tapi pasti, ke hidup Lilis.
         </p>
 
-        <button class="btn btn-pink" onclick="nextPage(8)">
+        <button class="btn btn-main" onclick="nextPage(8)">
           Aamiin
         </button>
 
-        <button class="btn btn-soft" onclick="prankAamiin()">
+        <button class="btn btn-main" onclick="prankAamiin()">
           Kalau nggak aamiin?
         </button>
       </div>
@@ -592,7 +625,7 @@
           mood Lilis naik minimal 1 level.
         </p>
 
-        <button class="btn btn-pink" onclick="nextPage(9)">
+        <button class="btn btn-main" onclick="nextPage(9)">
           Masih ada lagi
         </button>
       </div>
@@ -606,19 +639,21 @@
           Sebelum halaman terakhir, Lilis harus tekan tombol yang benar.
         </p>
 
-        <button class="btn btn-soft" onclick="prankTest(this)">
+        <button class="btn btn-main" onclick="miniTest('kaget')">
           Klik ini kalau mau kaget
         </button>
 
-        <button class="btn btn-soft" onclick="prankTest(this)">
+        <button class="btn btn-main" onclick="miniTest('senyum')">
           Klik ini kalau mau senyum
         </button>
 
-        <button class="btn btn-pink" onclick="nextPage(10)">
+        <button class="btn btn-main" onclick="nextPage(10)">
           Klik ini kalau mau lanjut
         </button>
 
-        <p class="small" id="testText"></p>
+        <p class="small">
+          Clue: tombol yang benar biasanya paling tenang 😄
+        </p>
       </div>
 
       <!-- Halaman 10 -->
@@ -642,7 +677,7 @@
           </p>
         </div>
 
-        <button class="btn btn-pink" onclick="munculBonusSenyum()">
+        <button class="btn btn-final" onclick="munculBonusSenyum()">
           Klik buat bonus senyum
         </button>
 
@@ -660,7 +695,7 @@
             Status: sukses bikin mood naik 1 level ✨
           </p>
 
-          <button class="btn btn-yellow" onclick="ulangAnimasi()">
+          <button class="btn btn-main" onclick="ulangAnimasi()">
             Klik lagi kalau masih kurang senyum
           </button>
         </div>
@@ -669,9 +704,271 @@
     </div>
   </div>
 
+  <!-- Popup estetik -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-box">
+      <div class="popup-emoji" id="popupEmoji">😄</div>
+      <h3 id="popupTitle">Hehe</h3>
+      <p id="popupText">Ini pesan popup.</p>
+      <button onclick="tutupPopup()">Oke, lanjut 🤍</button>
+    </div>
+  </div>
+
   <script>
     let currentPage = 1;
     const totalPage = 10;
+
+    const clickCount = {
+      skip: 0,
+      rahasia: 0,
+      lupa: 0,
+      misterius: 0,
+      nggak: 0,
+      pikir: 0,
+      aamiin: 0,
+      kaget: 0,
+      senyum: 0,
+      bonus: 0
+    };
+
+    const pesan = {
+      skip: [
+        {
+          emoji: "😆",
+          title: "Eits, nggak bisa skip",
+          text: "Surprise ini harus dibaca pelan-pelan. Soalnya dibuatnya juga sambil mikir kata-kata biar Lilis senyum."
+        },
+        {
+          emoji: "🫢",
+          title: "Skip ditolak sistem",
+          text: "Sistem mendeteksi Lilis mencoba kabur dari surprise. Mohon kembali ke jalur senyum ya."
+        },
+        {
+          emoji: "😄",
+          title: "Tombol skip pura-pura ada",
+          text: "Tombol ini cuma hiasan lucu. Aslinya Lilis tetap harus lanjut baca."
+        },
+        {
+          emoji: "🤍",
+          title: "Maaf, akses skip dikunci",
+          text: "Karena surprise ini dibuat khusus, tombol skip belum mendapat izin dari hati."
+        }
+      ],
+
+      rahasia: [
+        {
+          emoji: "🤫",
+          title: "Tombol rahasia terbuka",
+          text: "Rahasia kecilnya adalah: Lilis harus senyum dulu sebelum lanjut. Kalau sudah senyum, berarti programnya berhasil."
+        },
+        {
+          emoji: "😄",
+          title: "Rahasia level 2",
+          text: "Ternyata tombol ini cuma mau bilang kalau senyum Lilis itu cocok banget sama suasana hari ini."
+        },
+        {
+          emoji: "✨",
+          title: "Rahasia manis",
+          text: "Kadang hal kecil bisa jadi berkesan, apalagi kalau yang bukanya Lilis Sunawati."
+        },
+        {
+          emoji: "💌",
+          title: "Rahasia terakhir",
+          text: "Website ini sederhana, tapi niatnya nggak sesederhana tampilannya."
+        }
+      ],
+
+      lupa: [
+        {
+          emoji: "🫢",
+          title: "Ups, hampir benar",
+          text: "Bukan lupa kok. Ini tuh surprise yang loading-nya agak lama biar kelihatan lebih niat."
+        },
+        {
+          emoji: "😆",
+          title: "Lupa? tidak semudah itu",
+          text: "Kalau lupa beneran, mana mungkin sampai bikin website begini. Ini telat yang berusaha estetik."
+        },
+        {
+          emoji: "🤭",
+          title: "Jawabanmu lucu",
+          text: "Lilis curiga ya? Tenang, ini bukan lupa. Ini cuma proses rendering perasaan yang agak lama."
+        },
+        {
+          emoji: "💻",
+          title: "Sistem menolak jawaban",
+          text: "Error 404: alasan lupa tidak ditemukan. Coba cari alasan yang lebih anak IT."
+        }
+      ],
+
+      misterius: [
+        {
+          emoji: "😎",
+          title: "Misterius sih iya",
+          text: "Tapi bukan itu jawabannya. Ini bukan misterius, ini lebih ke telat tapi tetap pengen berkesan."
+        },
+        {
+          emoji: "😆",
+          title: "Mode misterius aktif",
+          text: "Kalau terlalu misterius nanti malah dikira teka-teki MPLS. Jadi coba pilih jawaban yang lebih cocok."
+        },
+        {
+          emoji: "🧐",
+          title: "Hampir benar",
+          text: "Ada sedikit misteriusnya, tapi alasan utamanya masih loading seperti website yang belum di-deploy."
+        },
+        {
+          emoji: "✨",
+          title: "Jawaban estetik",
+          text: "Sibuk jadi misterius boleh, tapi surprise ini lebih sibuk bikin Lilis senyum."
+        }
+      ],
+
+      nggak: [
+        {
+          emoji: "🥺",
+          title: "Yah masa nggak dulu?",
+          text: "Tombol ini sebenarnya cuma tes kesabaran. Pilihan terbaik tetap dimaafin dong, kan niatnya manis."
+        },
+        {
+          emoji: "😭",
+          title: "Sistem mulai sedih",
+          text: "Kalau nggak dimaafin, nanti websitenya murung. Kasihan, dia sudah tampil pink-pink begini."
+        },
+        {
+          emoji: "😄",
+          title: "Tombol ini nge-prank",
+          text: "Tombol nggak dulu cuma formalitas. Dalam hati kecil, sistem yakin Lilis tetap baik."
+        },
+        {
+          emoji: "🤍",
+          title: "Permintaan maaf dikirim ulang",
+          text: "Maaf ya Lilis, telat ngucapinnya. Tapi semoga telatnya masih bisa berubah jadi senyum."
+        }
+      ],
+
+      pikir: [
+        {
+          emoji: "🤭",
+          title: "Pikir-pikir dulu ya?",
+          text: "Boleh pikir-pikir, tapi sistem mendeteksi bahwa Lilis akan tetap senyum setelah ini."
+        },
+        {
+          emoji: "⏳",
+          title: "Memproses jawaban",
+          text: "Loading keputusan Lilis... hasil sementara: kemungkinan besar tetap dimaafin."
+        },
+        {
+          emoji: "😆",
+          title: "Kebanyakan mikir nanti error",
+          text: "Kalau terlalu lama mikir, nanti programnya minta restart. Lebih aman pilih dimaafin."
+        },
+        {
+          emoji: "🌷",
+          title: "Pikirnya sambil senyum ya",
+          text: "Sambil mikir, jangan lupa senyum. Soalnya halaman berikutnya dibuat khusus biar mood naik."
+        }
+      ],
+
+      aamiin: [
+        {
+          emoji: "😭",
+          title: "Yah kok nggak aamiin?",
+          text: "Kalau nggak aamiin, tombolnya bisa ngambek. Tapi gapapa, yang penting Lilis tetap bahagia dan senyum hari ini."
+        },
+        {
+          emoji: "🥺",
+          title: "Doanya jangan ditolak",
+          text: "Doa baik itu jangan ditolak ya. Minimal diterima dulu, nanti bahagianya menyusul pelan-pelan."
+        },
+        {
+          emoji: "😄",
+          title: "Aamiin versi sistem",
+          text: "Sistem otomatis mengubah jawaban ini menjadi aamiin, demi kebaikan Lilis Sunawati."
+        },
+        {
+          emoji: "🤍",
+          title: "Tombolnya cuma bercanda",
+          text: "Mau klik apa pun, doanya tetap sama: semoga Lilis selalu sehat, bahagia, dan sering senyum."
+        }
+      ],
+
+      kaget: [
+        {
+          emoji: "😜",
+          title: "Kagetnya belum tersedia",
+          text: "Fitur kaget masih maintenance. Yang tersedia sekarang cuma fitur bikin senyum."
+        },
+        {
+          emoji: "🫢",
+          title: "Boo!",
+          text: "Kaget nggak? Kalau nggak kaget, gapapa. Yang penting jangan lupa senyum."
+        },
+        {
+          emoji: "😆",
+          title: "Tombol prank",
+          text: "Tombol ini cuma mengetes rasa penasaran Lilis. Hasilnya: penasaranmu cukup tinggi."
+        },
+        {
+          emoji: "✨",
+          title: "Kaget estetik",
+          text: "Kagetnya soft aja, jangan terlalu kaget. Nanti surprise-nya belum selesai."
+        }
+      ],
+
+      senyum: [
+        {
+          emoji: "😄",
+          title: "Senyum terdeteksi",
+          text: "Sistem mendeteksi kemungkinan Lilis senyum. Kalau belum, coba senyum dikit aja."
+        },
+        {
+          emoji: "🤍",
+          title: "Fitur senyum aktif",
+          text: "Tombol ini dibuat khusus untuk menaikkan mood Lilis minimal 1 level."
+        },
+        {
+          emoji: "🌷",
+          title: "Senyumnya cocok",
+          text: "Senyum Lilis cocok banget sama tema pink-pink website ini."
+        },
+        {
+          emoji: "💌",
+          title: "Pesan kecil",
+          text: "Kalau senyum ini berhasil muncul, berarti surprise sederhana ini nggak sia-sia."
+        }
+      ],
+
+      bonus: [
+        {
+          emoji: "😄",
+          title: "Bonus senyum dikirim",
+          text: "Kalau Lilis senyum setelah baca ini, berarti programnya berjalan dengan lancar."
+        },
+        {
+          emoji: "🥳",
+          title: "Bonus tambahan",
+          text: "Senyum kedua berhasil dikirim. Semoga mood Lilis makin naik."
+        },
+        {
+          emoji: "🤍",
+          title: "Bonus manis",
+          text: "Ini bonus kecil dari website yang sederhana, tapi dibuat dengan niat yang cukup panjang."
+        },
+        {
+          emoji: "✨",
+          title: "Mood naik 1 level",
+          text: "Status: sukses. Semoga Lilis tetap bahagia hari ini dan seterusnya."
+        }
+      ]
+    };
+
+    function ambilPesan(key) {
+      const daftar = pesan[key];
+      const index = clickCount[key] % daftar.length;
+      clickCount[key]++;
+      return daftar[index];
+    }
 
     function nextPage(pageNumber) {
       document.getElementById("page" + currentPage).classList.remove("active");
@@ -703,74 +1000,61 @@
       }, 650);
     }
 
-    function prankSkip() {
+    function popupLucu(emoji, title, text) {
+      document.getElementById("popupEmoji").innerText = emoji;
+      document.getElementById("popupTitle").innerText = title;
+      document.getElementById("popupText").innerText = text;
+      document.getElementById("popup").style.display = "flex";
+
+      burstConfetti(10);
+    }
+
+    function popupDariKey(key) {
+      const data = ambilPesan(key);
+      popupLucu(data.emoji, data.title, data.text);
+      popSticker(data.emoji);
+    }
+
+    function tutupPopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function getarCard() {
       const card = document.getElementById("card");
       card.classList.add("shake");
-      popSticker("😆");
 
       setTimeout(() => {
         card.classList.remove("shake");
       }, 350);
+    }
 
-      alert("Eits, nggak bisa skip. Surprise-nya harus dibaca dulu 😄");
+    function prankSkip() {
+      getarCard();
+      popupDariKey("skip");
     }
 
     function tombolRahasia() {
-      popSticker("🤫");
-      burstConfetti(12);
-      alert("Tombol rahasia terbuka: Lilis harus senyum dulu sebelum lanjut 😄");
+      popupDariKey("rahasia");
     }
 
-    function jawabanSalah(teks) {
-      const respon = document.getElementById("responSalah");
-      const card = document.getElementById("card");
-
-      respon.innerText = teks;
-      card.classList.add("shake");
-      popSticker("🫢");
-
-      setTimeout(() => {
-        card.classList.remove("shake");
-      }, 350);
+    function jawabanSalah(key) {
+      getarCard();
+      popupDariKey(key);
     }
 
-    function lariTombol(button) {
-      const geserX = Math.random() * 80 - 40;
-      const geserY = Math.random() * 30 - 10;
-
-      button.innerText = "Tetap harus dimaafin 😄";
-      button.style.transform = `translate(${geserX}px, ${geserY}px) rotate(${Math.random() * 8 - 4}deg)`;
-
-      popSticker("🏃‍♂️");
+    function pilihanMaaf(key) {
+      getarCard();
+      popupDariKey(key);
     }
 
     function prankAamiin() {
-      const card = document.getElementById("card");
-      card.classList.add("shake");
-      popSticker("😭");
-
-      setTimeout(() => {
-        card.classList.remove("shake");
-      }, 350);
-
-      alert("Kalau nggak aamiin, nanti tombolnya ngambek 😭");
+      getarCard();
+      popupDariKey("aamiin");
     }
 
-    function prankTest(button) {
-      const testText = document.getElementById("testText");
-      const isi = [
-        "Hehe salah tombol, tapi tetap lucu 😄",
-        "Tombol ini cuma numpang lewat 😆",
-        "Belum rezekinya, coba tombol yang paling niat ✨"
-      ];
-
-      testText.innerText = isi[Math.floor(Math.random() * isi.length)];
-      button.style.transform = "scale(0.94)";
-      popSticker("😜");
-
-      setTimeout(() => {
-        button.style.transform = "scale(1)";
-      }, 250);
+    function miniTest(key) {
+      getarCard();
+      popupDariKey(key);
     }
 
     function munculBonusSenyum() {
@@ -778,6 +1062,7 @@
 
       bonus.style.display = "block";
 
+      popupDariKey("bonus");
       burstConfetti(50);
 
       for (let i = 0; i < 35; i++) {
@@ -788,9 +1073,6 @@
         setTimeout(buatBubble, i * 120);
       }
 
-      popSticker("😄");
-      popSticker("🤍");
-
       setTimeout(() => {
         bonus.scrollIntoView({
           behavior: "smooth",
@@ -800,6 +1082,7 @@
     }
 
     function ulangAnimasi() {
+      popupDariKey("bonus");
       burstConfetti(45);
 
       for (let i = 0; i < 30; i++) {
