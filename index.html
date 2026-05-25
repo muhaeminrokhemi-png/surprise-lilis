@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Untuk Lilis Sunawati 🎂</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff8fa3, #ffc2c7, #ffd6dc, #ffe5ec);
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+      padding: 18px 12px;
+    }
+
+    .wrapper {
+      width: 100%;
+      min-height: calc(100vh - 36px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 395px;
+      min-height: 560px;
+      padding: 24px 19px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+      position: relative;
+      z-index: 5;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .page {
+      display: none;
+      animation: muncul 0.75s ease;
+      position: relative;
+      z-index: 3;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .progress {
+      width: 100%;
+      height: 9px;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 4;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: white;
+      border-radius: 999px;
+      transition: 0.5s ease;
+    }
+
+    .emoji {
+      font-size: 62px;
+      margin-bottom: 12px;
+      animation: naikTurun 2s ease-in-out infinite;
+    }
+
+    .emoji-spin {
+      animation: spinLucu 2.5s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: 27px;
+      line-height: 1.25;
+      margin: 10px 0 18px;
+      font-weight: 900;
+    }
+
+    h2 {
+      font-size: 23px;
+      line-height: 1.3;
+      margin: 12px 0 16px;
+      font-weight: 850;
+    }
+
+    p {
+      font-size: 15.8px;
+      line-height: 1.65;
+      margin: 15px 0;
+      font-weight: 500;
+    }
+
+    .btn {
+      margin: 9px auto;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 999px;
+      background: white;
+      color: #ff4f87;
+      font-weight: 850;
+      cursor: pointer;
+      font-size: 15px;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+      transition: 0.25s ease;
+      display: block;
+      width: 100%;
+      max-width: 290px;
+    }
+
+    .btn:active {
+      transform: scale(0.94);
+    }
+
+    .btn-pink {
+      background: #ff4f87;
+      color: white;
+    }
+
+    .btn-soft {
+      background: rgba(255, 255, 255, 0.88);
+      color: #ff4f87;
+    }
+
+    .btn-yellow {
+      background: #fff3b0;
+      color: #ff4f87;
+    }
+
+    .small {
+      font-size: 13.5px;
+      opacity: 0.95;
+      margin-top: 18px;
+    }
+
+    .note,
+    .final-box,
+    .bonus,
+    .fun-box {
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 22px;
+      padding: 15px;
+      margin-top: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .bonus {
+      display: none;
+      animation: muncul 1s ease;
+    }
+
+    .emoji-besar {
+      font-size: 58px;
+      animation: naikTurun 1.4s ease-in-out infinite;
+    }
+
+    .love {
+      position: fixed;
+      bottom: -35px;
+      font-size: 22px;
+      animation: terbang linear forwards;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      width: 10px;
+      height: 16px;
+      border-radius: 3px;
+      animation: jatuh linear forwards;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .bubble {
+      position: fixed;
+      bottom: -30px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      animation: bubbleNaik linear forwards;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .sticker {
+      position: fixed;
+      font-size: 34px;
+      animation: popSticker 1.4s ease forwards;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .shake {
+      animation: goyang 0.32s ease;
+    }
+
+    .pulse {
+      animation: pulse 1s ease infinite;
+    }
+
+    .typing {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .typing span::after {
+      content: "|";
+      animation: kedip 0.7s infinite;
+    }
+
+    .mini-game {
+      margin-top: 18px;
+    }
+
+    .run-away {
+      position: relative;
+    }
+
+    .meter {
+      width: 100%;
+      height: 16px;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 12%;
+      background: white;
+      border-radius: 999px;
+      transition: 0.35s ease;
+    }
+
+    @keyframes muncul {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes naikTurun {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-9px);
+      }
+    }
+
+    @keyframes spinLucu {
+      0%, 100% {
+        transform: rotate(0deg) scale(1);
+      }
+      25% {
+        transform: rotate(-8deg) scale(1.05);
+      }
+      50% {
+        transform: rotate(8deg) scale(1.1);
+      }
+      75% {
+        transform: rotate(-5deg) scale(1.05);
+      }
+    }
+
+    @keyframes terbang {
+      from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-115vh) scale(1.45);
+        opacity: 0;
+      }
+    }
+
+    @keyframes jatuh {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(115vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes bubbleNaik {
+      from {
+        transform: translateY(0) scale(0.8);
+        opacity: 0.7;
+      }
+      to {
+        transform: translateY(-110vh) scale(1.8);
+        opacity: 0;
+      }
+    }
+
+    @keyframes popSticker {
+      0% {
+        opacity: 0;
+        transform: scale(0.4) rotate(-12deg);
+      }
+      45% {
+        opacity: 1;
+        transform: scale(1.2) rotate(8deg);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1) translateY(-70px);
+      }
+    }
+
+    @keyframes goyang {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-7px); }
+      50% { transform: translateX(7px); }
+      75% { transform: translateX(-7px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.04);
+      }
+    }
+
+    @keyframes kedip {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .card {
+        min-height: 540px;
+        padding: 22px 16px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: 21px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+
+      .emoji {
+        font-size: 54px;
+      }
+
+      .btn {
+        font-size: 14.5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <div class="card" id="card">
+
+      <div class="progress">
+        <div class="bar" id="bar"></div>
+      </div>
+
+      <!-- Halaman 1 -->
+      <div class="page active" id="page1">
+        <div class="emoji emoji-spin">🎂</div>
+        <h1>Hai, Lilis Sunawati</h1>
+
+        <p>
+          Sebelum lanjut, website ini dibuat dengan niat baik,
+          sedikit deg-degan, dan lumayan banyak mikir kata-kata.
+        </p>
+
+        <div class="fun-box">
+          <p>
+            Status program:<br>
+            loading surprise untuk Lilis...
+          </p>
+
+          <div class="meter">
+            <div class="meter-fill" id="meter1"></div>
+          </div>
+        </div>
+
+        <button class="btn btn-pink" onclick="isiMeterLaluNext()">
+          Mulai surprise-nya
+        </button>
+
+        <button class="btn btn-soft" onclick="prankSkip()">
+          Aku mau skip aja
+        </button>
+      </div>
+
+      <!-- Halaman 2 -->
+      <div class="page" id="page2">
+        <div class="emoji">😄</div>
+        <h2>Peringatan kecil</h2>
+
+        <p>
+          Kalau setelah buka ini Lilis senyum-senyum sendiri,
+          itu bukan salah HP-nya.
+        </p>
+
+        <p>
+          Itu efek surprise sederhana dari anak Sistem Informasi.
+        </p>
+
+        <button class="btn btn-pink" onclick="nextPage(3)">
+          Lanjut deh
+        </button>
+
+        <button class="btn btn-yellow" onclick="tombolRahasia()">
+          Tombol rahasia
+        </button>
+      </div>
+
+      <!-- Halaman 3 -->
+      <div class="page" id="page3">
+        <div class="emoji">🧐</div>
+        <h2>Tebak dulu</h2>
+
+        <p>
+          Menurut Lilis, kenapa ucapan ini telat?
+        </p>
+
+        <button class="btn" onclick="jawabanSalah('Bukan lupa kok, ini cuma strategi biar beda sendiri 😄')">
+          Karena lupa
+        </button>
+
+        <button class="btn" onclick="jawabanSalah('Misterius sih iya, tapi bukan itu jawabannya 😆')">
+          Karena sibuk jadi misterius
+        </button>
+
+        <button class="btn btn-pink" onclick="nextPage(4)">
+          Karena loading-nya agak lama
+        </button>
+
+        <p class="small" id="responSalah"></p>
+      </div>
+
+      <!-- Halaman 4 -->
+      <div class="page" id="page4">
+        <div class="emoji">🎉</div>
+        <h2>Betul banget!</h2>
+
+        <p>
+          Maaf ya ucapannya telat dari tanggal 16 kemarin.
+        </p>
+
+        <p>
+          Tapi tenang, niat baik itu tidak pernah expired,
+          cuma loading-nya agak lama.
+        </p>
+
+        <button class="btn btn-pink" onclick="nextPage(5)">
+          Dimaafin nggak?
+        </button>
+      </div>
+
+      <!-- Halaman 5 -->
+      <div class="page" id="page5">
+        <div class="emoji">😌</div>
+        <h2>Pilih salah satu</h2>
+
+        <p>
+          Karena ini surprise telat, Lilis wajib pilih jawaban.
+        </p>
+
+        <button class="btn btn-pink pulse" onclick="nextPage(6)">
+          Dimaafin
+        </button>
+
+        <button class="btn btn-soft run-away" onclick="lariTombol(this)">
+          Nggak dulu
+        </button>
+
+        <button class="btn btn-soft run-away" onclick="lariTombol(this)">
+          Pikir-pikir dulu
+        </button>
+
+        <p class="small">
+          Tenang, tombolnya tidak sepenuhnya demokratis 😄
+        </p>
+      </div>
+
+      <!-- Halaman 6 -->
+      <div class="page" id="page6">
+        <div class="emoji">🤍</div>
+        <h2>Makasih sudah dimaafin</h2>
+
+        <p>
+          Aku bukan orang yang paling jago bikin surprise,
+          tapi kali ini aku coba bikin sesuatu kecil
+          pakai cara yang aku bisa.
+        </p>
+
+        <div class="note">
+          <p>
+            Bukan bunga, bukan coklat,
+            tapi link hasil ngoding sendiri.
+          </p>
+        </div>
+
+        <button class="btn btn-pink" onclick="nextPage(7)">
+          Lanjut baca
+        </button>
+      </div>
+
+      <!-- Halaman 7 -->
+      <div class="page" id="page7">
+        <div class="emoji">🌷</div>
+        <h2>Doa buat Lilis</h2>
+
+        <p>
+          Semoga Lilis selalu sehat, bahagia,
+          makin banyak rezekinya,
+          dan makin sering senyum.
+        </p>
+
+        <p>
+          Semoga hal-hal baik datang pelan-pelan,
+          tapi pasti, ke hidup Lilis.
+        </p>
+
+        <button class="btn btn-pink" onclick="nextPage(8)">
+          Aamiin
+        </button>
+
+        <button class="btn btn-soft" onclick="prankAamiin()">
+          Kalau nggak aamiin?
+        </button>
+      </div>
+
+      <!-- Halaman 8 -->
+      <div class="page" id="page8">
+        <div class="emoji">💻</div>
+        <h2>Pesan dari anak Sistem Informasi</h2>
+
+        <p>
+          Kalau hidup kadang error,
+          semoga Lilis tetap jadi orang yang kuat,
+          ceria, dan selalu punya alasan buat bahagia.
+        </p>
+
+        <p>
+          Dan semoga setelah buka ini,
+          mood Lilis naik minimal 1 level.
+        </p>
+
+        <button class="btn btn-pink" onclick="nextPage(9)">
+          Masih ada lagi
+        </button>
+      </div>
+
+      <!-- Halaman 9 -->
+      <div class="page" id="page9">
+        <div class="emoji">🎁</div>
+        <h2>Mini test dulu</h2>
+
+        <p>
+          Sebelum halaman terakhir, Lilis harus tekan tombol yang benar.
+        </p>
+
+        <button class="btn btn-soft" onclick="prankTest(this)">
+          Klik ini kalau mau kaget
+        </button>
+
+        <button class="btn btn-soft" onclick="prankTest(this)">
+          Klik ini kalau mau senyum
+        </button>
+
+        <button class="btn btn-pink" onclick="nextPage(10)">
+          Klik ini kalau mau lanjut
+        </button>
+
+        <p class="small" id="testText"></p>
+      </div>
+
+      <!-- Halaman 10 -->
+      <div class="page" id="page10">
+        <div class="emoji">✨</div>
+        <h2>Last page, beneran</h2>
+
+        <p>
+          Happy belated birthday, Lilis Sunawati.
+        </p>
+
+        <p>
+          Maaf telat ngucapinnya.
+          Tapi semoga ucapan kecil ini tetap bisa bikin Lilis senyum hari ini.
+        </p>
+
+        <div class="final-box">
+          <p>
+            Dari seseorang yang kadang lebih lancar ngoding
+            daripada ngomong langsung 😄
+          </p>
+        </div>
+
+        <button class="btn btn-pink" onclick="munculBonusSenyum()">
+          Klik buat bonus senyum
+        </button>
+
+        <div id="bonusSenyum" class="bonus">
+          <div class="emoji-besar">😄🤍</div>
+
+          <h2>Bonus senyum berhasil dikirim!</h2>
+
+          <p>
+            Kalau Lilis senyum setelah baca ini,
+            berarti programnya berjalan dengan lancar.
+          </p>
+
+          <p>
+            Status: sukses bikin mood naik 1 level ✨
+          </p>
+
+          <button class="btn btn-yellow" onclick="ulangAnimasi()">
+            Klik lagi kalau masih kurang senyum
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let currentPage = 1;
+    const totalPage = 10;
+
+    function nextPage(pageNumber) {
+      document.getElementById("page" + currentPage).classList.remove("active");
+      document.getElementById("page" + pageNumber).classList.add("active");
+
+      currentPage = pageNumber;
+      updateProgress();
+      burstConfetti(18);
+      popSticker("✨");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function updateProgress() {
+      const progress = (currentPage / totalPage) * 100;
+      document.getElementById("bar").style.width = progress + "%";
+    }
+
+    function isiMeterLaluNext() {
+      const meter = document.getElementById("meter1");
+      meter.style.width = "100%";
+      burstConfetti(25);
+
+      setTimeout(() => {
+        nextPage(2);
+      }, 650);
+    }
+
+    function prankSkip() {
+      const card = document.getElementById("card");
+      card.classList.add("shake");
+      popSticker("😆");
+
+      setTimeout(() => {
+        card.classList.remove("shake");
+      }, 350);
+
+      alert("Eits, nggak bisa skip. Surprise-nya harus dibaca dulu 😄");
+    }
+
+    function tombolRahasia() {
+      popSticker("🤫");
+      burstConfetti(12);
+      alert("Tombol rahasia terbuka: Lilis harus senyum dulu sebelum lanjut 😄");
+    }
+
+    function jawabanSalah(teks) {
+      const respon = document.getElementById("responSalah");
+      const card = document.getElementById("card");
+
+      respon.innerText = teks;
+      card.classList.add("shake");
+      popSticker("🫢");
+
+      setTimeout(() => {
+        card.classList.remove("shake");
+      }, 350);
+    }
+
+    function lariTombol(button) {
+      const geserX = Math.random() * 80 - 40;
+      const geserY = Math.random() * 30 - 10;
+
+      button.innerText = "Tetap harus dimaafin 😄";
+      button.style.transform = `translate(${geserX}px, ${geserY}px) rotate(${Math.random() * 8 - 4}deg)`;
+
+      popSticker("🏃‍♂️");
+    }
+
+    function prankAamiin() {
+      const card = document.getElementById("card");
+      card.classList.add("shake");
+      popSticker("😭");
+
+      setTimeout(() => {
+        card.classList.remove("shake");
+      }, 350);
+
+      alert("Kalau nggak aamiin, nanti tombolnya ngambek 😭");
+    }
+
+    function prankTest(button) {
+      const testText = document.getElementById("testText");
+      const isi = [
+        "Hehe salah tombol, tapi tetap lucu 😄",
+        "Tombol ini cuma numpang lewat 😆",
+        "Belum rezekinya, coba tombol yang paling niat ✨"
+      ];
+
+      testText.innerText = isi[Math.floor(Math.random() * isi.length)];
+      button.style.transform = "scale(0.94)";
+      popSticker("😜");
+
+      setTimeout(() => {
+        button.style.transform = "scale(1)";
+      }, 250);
+    }
+
+    function munculBonusSenyum() {
+      const bonus = document.getElementById("bonusSenyum");
+
+      bonus.style.display = "block";
+
+      burstConfetti(50);
+
+      for (let i = 0; i < 35; i++) {
+        setTimeout(buatLove, i * 70);
+      }
+
+      for (let i = 0; i < 12; i++) {
+        setTimeout(buatBubble, i * 120);
+      }
+
+      popSticker("😄");
+      popSticker("🤍");
+
+      setTimeout(() => {
+        bonus.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }, 250);
+    }
+
+    function ulangAnimasi() {
+      burstConfetti(45);
+
+      for (let i = 0; i < 30; i++) {
+        setTimeout(buatLove, i * 60);
+      }
+
+      popSticker("🥳");
+    }
+
+    function buatLove() {
+      const love = document.createElement("div");
+      love.className = "love";
+
+      const emoji = ["💖", "🤍", "💕", "💗", "✨", "🌷", "😄"];
+      love.innerHTML = emoji[Math.floor(Math.random() * emoji.length)];
+
+      love.style.left = Math.random() * 100 + "vw";
+      love.style.animationDuration = Math.random() * 3 + 4 + "s";
+      love.style.fontSize = Math.random() * 12 + 18 + "px";
+
+      document.body.appendChild(love);
+
+      setTimeout(() => {
+        love.remove();
+      }, 7500);
+    }
+
+    function buatBubble() {
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+
+      bubble.style.left = Math.random() * 100 + "vw";
+      bubble.style.animationDuration = Math.random() * 3 + 4 + "s";
+      bubble.style.width = Math.random() * 16 + 10 + "px";
+      bubble.style.height = bubble.style.width;
+
+      document.body.appendChild(bubble);
+
+      setTimeout(() => {
+        bubble.remove();
+      }, 7500);
+    }
+
+    function burstConfetti(jumlah) {
+      const warna = ["#ffffff", "#ff4f87", "#fff3b0", "#ffd6dc", "#ffb3c6", "#f8edeb"];
+
+      for (let i = 0; i < jumlah; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.background = warna[Math.floor(Math.random() * warna.length)];
+        confetti.style.animationDuration = Math.random() * 2 + 2.8 + "s";
+        confetti.style.width = Math.random() * 8 + 6 + "px";
+        confetti.style.height = Math.random() * 12 + 8 + "px";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 5200);
+      }
+    }
+
+    function popSticker(emoji) {
+      const sticker = document.createElement("div");
+      sticker.className = "sticker";
+      sticker.innerHTML = emoji;
+
+      sticker.style.left = Math.random() * 70 + 15 + "vw";
+      sticker.style.top = Math.random() * 45 + 20 + "vh";
+
+      document.body.appendChild(sticker);
+
+      setTimeout(() => {
+        sticker.remove();
+      }, 1500);
+    }
+
+    setInterval(buatLove, 1200);
+    setInterval(buatBubble, 1800);
+    updateProgress();
+  </script>
+
+</body>
+</html>
